@@ -1,35 +1,51 @@
 package testSuite;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.junit.runners.Parameterized.Parameters;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class YahooSignUp {
 
-	public static void main(String[] args) throws InterruptedException {
+public class YahooSignUp {
+	
+ 	public static ChromeDriver p2;
+  @BeforeClass
+ public static void openBrowser(){
+	 
+     p2 = new ChromeDriver();
+     p2.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
+	} 
+
+	@Test
+	public static void main() throws InterruptedException {
 		// TODO Auto-generated method stub
-		System.setProperty("webdriver.gecko.driver","C:\\Users\\Faisal\\workspace1\\Selenium\\DriverServer\\geckodriver.exe");
-	FirefoxDriver p1= new FirefoxDriver();
-	p1.get("https://login.yahoo.com/?.src=ym&.intl=us&.lang=en-US&.done=https%3a//mail.yahoo.com");
-	p1.findElementByXPath("//*[@id='login-signup']").click();
+		
+	System.setProperty("webdriver.chrome.driver","C:\\Users\\Faisal\\workspace1\\Selenium\\DriverServer\\chromedriver.exe");
+ 
+	p2.get("https://login.yahoo.com/?.src=ym&.intl=us&.lang=en-US&.done=https%3a//mail.yahoo.com");
+	p2.findElementByXPath("//*[@id='login-signup']").click();
 	Thread.sleep(2000);
-	p1.findElementByXPath("//div[@class='first-name pure-u-1-2']/input[@id='usernamereg-firstName']").click();
+	p2.findElementByXPath("//div[@class='first-name pure-u-1-2']/input[@id='usernamereg-firstName']").click();
 	Thread.sleep(2000);
-	p1.findElementByXPath("//div[@class='first-name pure-u-1-2']/input[@id='usernamereg-firstName']").sendKeys("Jose");
+	p2.findElementByXPath("//div[@class='first-name pure-u-1-2']/input[@id='usernamereg-firstName']").sendKeys("Jose");
 	Thread.sleep(2000);
-	p1.findElementByXPath("//div/input[@id='usernamereg-lastName']").click();
+	p2.findElementByXPath("//div/input[@id='usernamereg-lastName']").click();
 	
 	Thread.sleep(2000);
-	p1.findElementByXPath("//div/input[@id='usernamereg-lastName']").sendKeys("Koni");
+	p2.findElementByXPath("//div/input[@id='usernamereg-lastName']").sendKeys("Koni");
 	Thread.sleep(2000);
-	p1.findElementByXPath("//div/input[@id='usernamereg-yid']").click();
+	p2.findElementByXPath("//div/input[@id='usernamereg-yid']").click();
 	Thread.sleep(2000);
-	p1.findElementByXPath("//div/input[@id='usernamereg-yid']").sendKeys("Jose_koni16");
+	p2.findElementByXPath("//div/input[@id='usernamereg-yid']").sendKeys("Jose_koni16");
 	Thread.sleep(2000);
-	p1.findElementByXPath("//div/input[@id='usernamereg-password']").sendKeys("8867309361_Ni");
+	p2.findElementByXPath("//div/input[@id='usernamereg-password']").sendKeys("8867309361_Ni");
 	
 	Thread.sleep(2000);
 	
@@ -39,8 +55,8 @@ public class YahooSignUp {
 //    Select s1 =new Select(node);
 //    s1.selectByValue("30");
 	
-	p1.findElement(By.xpath("//div[@class='puree-dropdown']/select[@name='shortCountryCode']")).click();
-	Select sc=new Select(p1.findElement(By.xpath("//div[@class='puree-dropdown']/select[@name='shortCountryCode']")));
+	p2.findElement(By.xpath("//div[@class='puree-dropdown']/select[@name='shortCountryCode']")).click();
+	Select sc=new Select(p2.findElement(By.xpath("//div[@class='puree-dropdown']/select[@name='shortCountryCode']")));
 	Thread.sleep(2000);
 	List<WebElement> country = sc.getOptions();
 	
@@ -54,26 +70,26 @@ break;}
 	 
 //sc.selectByValue("IN");s
 	Thread.sleep(2000);
-	p1.findElementByXPath("//div[@class='phone-number']/input[@id='usernamereg-phone']").click();
-	p1.findElementByXPath("//div[@class='phone-number']/input[@id='usernamereg-phone']").click();
-	p1.findElementByXPath("//div[@class='phone-number']/input[@id='usernamereg-phone']").sendKeys("8867309361");
+	p2.findElementByXPath("//div[@class='phone-number']/input[@id='usernamereg-phone']").click();
+	p2.findElementByXPath("//div[@class='phone-number']/input[@id='usernamereg-phone']").click();
+	p2.findElementByXPath("//div[@class='phone-number']/input[@id='usernamereg-phone']").sendKeys("8867309361");
 	Thread.sleep(2000);
 
-	Select sc1=new Select(p1.findElementByXPath("//div[@id='usernamereg-birthDate']/select[@id='usernamereg-month']"));
-	p1.findElementByXPath("//div[@id='usernamereg-birthDate']/select[@id='usernamereg-month']").click();
+	Select sc1=new Select(p2.findElementByXPath("//div[@id='usernamereg-birthDate']/select[@id='usernamereg-month']"));
+	p2.findElementByXPath("//div[@id='usernamereg-birthDate']/select[@id='usernamereg-month']").click();
 	sc1.selectByValue("10");
 	Thread.sleep(2000);
-	Select sc2=new Select(p1.findElementByXPath("//*[@id='usernamereg-day']"));
+	Select sc2=new Select(p2.findElementByXPath("//*[@id='usernamereg-day']"));
 	sc2.selectByVisibleText("28");
 	Thread.sleep(2000);
-	Select sc3=new Select(p1.findElementByXPath("//*[@id='usernamereg-year']"));
+	Select sc3=new Select(p2.findElementByXPath("//*[@id='usernamereg-year']"));
 	sc3.selectByVisibleText("1992");
 	//// drop down menu
-	p1.findElement(By.xpath("//form[@id='regform']/input[@id='usernamereg-freeformGender']")).click();
-	p1.findElement(By.xpath("//ul[@class='reg-gender-list']/li[contains(text(),'Male')]")).click();//
+	p2.findElement(By.xpath("//form[@id='regform']/input[@id='usernamereg-freeformGender']")).click();
+	p2.findElement(By.xpath("//ul[@class='reg-gender-list']/li[contains(text(),'Male')]")).click();//
 	
-//	Select sc4=new Select(p1.findElement(By.xpath("//form[@id='regform']/input[@id='usernamereg-freeformGender']")));
-////	Select sc4=new Select(p1.findElementByXPath("//*[@id='usernamereg-freeformGender']"));
+//	Select sc4=new Select(p2.findElement(By.xpath("//form[@id='regform']/input[@id='usernamereg-freeformGender']")));
+////	Select sc4=new Select(p2.findElementByXPath("//*[@id='usernamereg-freeformGender']"));
 //	Thread.sleep(2000);
 //	List<WebElement> gender = sc4.getOptions();
 //	System.out.println(gender.size());
